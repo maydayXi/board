@@ -1,0 +1,60 @@
+{% extends 'base.html' %}            <!-- 繼承基本網頁 -->
+{% load staticfiles %}               <!-- 載入靜態檔案 CSS Image JS -->
+
+{% block content %}
+  <form action="." method="post">    <!-- 新增留言表單 -->
+    {% csrf_token %}
+
+    <table width="100%" border="0" cellpadding="4" cellspacing="1">
+      <tr>                            <!-- 標題欄位 -->
+        <th width="80" align="right" valign="baseline">標題</th>
+        <td valign="baseline">{{postform.board_title}}</td>
+      </tr>
+
+      <tr>                            <!-- 姓名欄位 -->
+        <th align="right" valign="baseline">姓名</th>
+        <td valign="baseline">{{postform.board_name}}</td>
+      </tr>
+
+      <tr>                            <!-- 性別欄位 -->
+        <th align="right" valign="baseline">性別</th>
+        <td valign="baseline">
+          <input type="radio" name="board_gender" value="m" id="board_gender" checked>
+          <img src="{% static 'images/boy.png' %}" alt="男生" width="72" height="63">
+          <input type="radio" name="board_gender" value="f" id="board_gender2">
+          <img src="{% static 'images/girl.png' %}" alt="女生" width="72" height="63">
+        </td>
+      </tr>
+
+      <tr>                            <!-- Email 欄位 -->
+        <th align="right" valign="baseline">電子郵件</th>
+        <td valign="baseline">{{postform.board_mail}}</td>
+      </tr>
+
+      <tr>                            <!-- 個人網站欄位 -->
+        <th align="right" valign="baseline">個人網站</th>
+        <td valign="baseline">{{postform.board_web}}</td>
+      </tr>
+
+      <tr>                            <!-- 留言欄位 -->
+        <th align="right" valign="baseline">留言內容</th>
+        <td valign="baseline">{{postform.board_content}}</td>
+      </tr>
+
+      <tr>                            <!-- 驗證碼欄位 -->
+        <th align="right" valign="baseline">驗證碼</th>
+        <td valign="baseline">{{postform.captcha}}</td>
+      </tr>
+
+      <tr>                            <!-- 按鈕欄位 -->
+        <th colspan="2" align="center" valign="baseline">
+          <input type="submit" name="button" value="送出" id="button">
+          <input type="reset" name="button2" value="重設" id="button2">
+        </th>
+      </tr>
+    </table>
+
+    <span style="color:red;text-align:center;">{{message}}</span>
+
+  </form>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+  <title>留言板 — 登入管理</title>
+{% endblock %}
+
+{% block content %}
+  <table width="545" border="0" align="center" cellpadding="0" cellspacing="0" background="{% static 'images/g_r5_c4.png' %}">
+    <tr>
+      <td valign="top" style="background:url({% static 'images/guestbook2_1.png' %});background-repeat:no-repeat;">
+
+        <div class="postDiv">
+          <form action="." method="post" style="height:150px;">
+            {% csrf_token %}
+
+            <table border="0" align="center" cellpadding="4" cellspacing="1">
+              <tr>
+                <th align="right" valign="baseline">帳號</th>
+                <td valign="baseline">
+                  <input type="text" name="username" id="username" style="width=200px;">
+                </td>
+              </tr>
+
+              <tr>
+                <th align="right" valign="baseline">密碼</th>
+                <td valign="baseline">
+                  <input type="password" name="password" id="password" style="width=200px;">
+                </td>
+              </tr>
+
+              <tr>
+                <th colspan="2" align="center" valign="baseline">
+                  <input type="submit" name="button" id="button" value="登入">
+                  <input type="button" name="button2" id="button2" value="返回首頁" onclick="window.location='/index/'">
+                </th>
+              </tr>
+
+            </table>
+
+            <span style="color:red;">{{message}}</span>
+
+          </form>
+        </div>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

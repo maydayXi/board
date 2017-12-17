@@ -1,0 +1,111 @@
+{% extends 'base.html' %}     <!-- 繼承基礎網頁 -->
+{% load staticfiles %}        <!-- 載入靜態檔案 CSS Image JS -->
+
+{% block title %}             <!-- 網頁標題 -->
+  <title>留言板</title>
+{% endblock %}
+
+{% block twomenu %}           <!-- 功能選單區 登入、登出、編輯 -->
+  <img src="{% static 'images/comment.png' %}" width="16" height="16" align="absmiddle" />
+  <a href="/post/">我要留言</a>
+  <img src="{% static 'images/key.png' %}" width="16" height="16" align="absmiddle" />
+  <a href="/login/">版主管理</a>
+{% endblock %}
+
+{% block content %}           <!-- 留言區 -->
+      </td>
+    </tr>
+
+    {% for record in board_records %}
+      <tr>
+        <td background="{% static 'images/g_r3_c3.png' %}">
+
+          <table width="545" border="0" align="center" cellpadding="0" cellspacing="0" background="{% static 'images/g_r5_c4.png' %}">
+            <tr>
+              <td valign="top" style="background:url({% static 'images/g_r4_c4.png' %});background-repeat:no-repeat;">
+
+                <div class="floorDiv">
+                  {% if record.b_gender == "m" %}
+                    <img src="{% static 'images/boy.png' %}" width="72" height="63">
+                  {% else %}
+                    <img src="{% static 'images/girl.png' %}" width="72" height="63">
+                  {% endif %}
+                </div>
+
+                <div class="contentDiv">
+                  <p class="title">{{record.b_title}}</p>
+                  <p></p>
+                  <p>{{record.b_content}}</p>
+
+                  {% if record.b_response != "" %}
+                    <div class="responseDiv">
+                      <p><strong>版主回應</strong>：{{record.b_response}}</p>
+                    </div>
+                  {% endif %}
+
+                  <p class="editor">
+                    <img src="{% static 'images/user.png' %}" width="16" height="16" align="absmiddle">{{record.b_name}}&nbsp;
+                    <img src="{% static 'images/date.png' %}" width="16" height="16" align="absmiddle">{{record.b_time}}&nbsp;
+                    {% if record.b_mail != "" %}
+                      <a href="mailto:{{record.b_mail}}" target="_blank">
+                        <img src="{% static 'images/email.png' %}" width="16" height="16" border="0" align="absmiddle">
+                      </a>
+                    {% endif %}
+                    &nbsp;
+                    {% if record.b_web != "" %}
+                      <a href="{{record.b_web}}" target="_blank">
+                        <img src="{% static 'images/world.png' %}" width="16" height="16" border="0" align="absmiddle">
+                      </a>
+                    {% endif %}
+                  </p>
+                </div>
+
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <img src="{% static 'images/g_r7_c4.png' %}" name="g_r7_c4" width="545" height="12" border="0">
+              </td>
+            </tr>
+
+          </table>
+
+          <span class="functionDiv">
+            <img src="{% static 'images/g_r9_c3.png' %}" width="600" height="20" border="0">
+          </span>
+
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td background="{% static 'images/g_r3_c3.png' %}">
+          <div class="messageDiv">
+            <img src="{% static 'images/exclamation.png' %}" width="16" height="16" align="absmiddle">
+            目前沒有新的資料，歡迎留言。
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+    <!-- 頁數按鈕區 -->
+    <tr>
+      <td background="{% static 'images/g_r3_c3.png' %}">
+        <div class="pagebutton">
+          {% if current_page > 1 %}
+            <a href="/index/pre/" title="上一頁">
+              <img src="{% static 'images/prevpage.png' %}" alt="上一頁" width="64" height="24">
+            </a>
+          {% endif %}
+
+          {% if current_page < total_page %}
+            <a href="/index/next/" title="下一頁">
+              <img src="{% static 'images/nextpage.png' %}" alt="下一頁" width="64" height="24">
+            </a>
+          {% endif %}
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td background="{% static 'images/g_r3_c3.png' %}">
+{% endblock %}

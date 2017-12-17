@@ -1,0 +1,46 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html>
+
+  <head>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8">
+    {% block title %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  </head>
+
+  <body bgcolor="#FFFFFF">
+    <div id="warp">
+      <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><img src="{% static 'images/g_r1_c3.png' %}" height="176">&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td background="{% static 'images/g_r3_c3.png'}">
+            <div class="functionDiv">
+
+              <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="right">
+                    <img src="{% static 'images/door_out.png' %}" width="16" height="16" align="absmiddle">
+                    <a href="/logout/">登出管理</a>
+                  </td>
+                </tr>
+              </table>
+
+              <img src="{% static 'images/g_r9_c3.png' %}" width="600" height="20" border="0" />
+
+            </div>
+
+            {% block content %}{% endblock %}
+
+            <div class="siteinfo" style="text-align:center;font-family:Microsoft JhengHei;">
+              網站留言版&nbsp;&copy;&nbsp;2017 All Rights Reserved.
+            </div>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </body>
+
+</html>
